@@ -1,4 +1,6 @@
+import PhoneMockup from "./PhoneMockup";
 import Reveal from "./Reveal";
+import { screenshots } from "../config/screenshots";
 
 const steps = [
   {
@@ -56,6 +58,18 @@ export default function HowItWorks() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delayMs={200} className="mt-20 flex flex-col items-center text-center">
+          <PhoneMockup
+            label="Écran Accueil"
+            src={screenshots.accueil}
+            className="w-[240px] sm:w-[260px]"
+          />
+          <p className="mt-6 max-w-sm text-sm font-medium text-ink/60">
+            Aujourd&rsquo;hui, cette semaine, à anticiper&nbsp;: tout est
+            rassemblé au même endroit, pour que rien ne vous échappe jamais.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

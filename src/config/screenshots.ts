@@ -7,4 +7,5 @@ export const screenshots = {
   pensees: "/screenshots/pensees.png",
   calendrier: "/screenshots/calendrier.png",
   capture: "/screenshots/capture.png",
+  accueil: "/screenshots/accueil.png",
 };
