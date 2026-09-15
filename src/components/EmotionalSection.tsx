@@ -13,9 +13,8 @@ export default function EmotionalSection() {
     >
       <Reveal className="mx-auto max-w-2xl text-center">
         <p className="text-2xl font-medium italic leading-relaxed text-white sm:text-3xl">
-          &laquo; Pour ceux qui suivront, gravons le souvenir de nos petites
-          choses&nbsp;; c&rsquo;est là que repose notre soin le plus pur.
-          &raquo;
+          &laquo; Être attentionné, c&rsquo;est souvent se souvenir
+          d&rsquo;un petit détail au bon moment. &raquo;
         </p>
       </Reveal>
     </section>

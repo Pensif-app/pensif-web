@@ -24,12 +24,13 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section id="comment-ca-marche" className="relative overflow-visible bg-cream py-24">
-      {/* Sur grand écran, le téléphone flotte dans la marge droite et
-          déborde volontairement sur la section suivante — purement
-          décoratif, retiré du flux pour ne pas alourdir le bloc. */}
+      {/* Sur grand écran, le téléphone est positionné exactement à cheval
+          sur la frontière avec la section suivante (bottom-0 ancre son
+          bord bas sur la frontière, translate-y-1/2 le recentre dessus) :
+          moitié dans cette section, moitié dans la section sombre. */}
       <Reveal
         delayMs={220}
-        className="pointer-events-none absolute right-20 top-16 z-10 hidden lg:block xl:right-28"
+        className="pointer-events-none absolute bottom-0 right-8 z-10 hidden translate-y-1/2 lg:block xl:right-16"
       >
         <PhoneMockup
           label="Écran Accueil"
@@ -48,7 +49,9 @@ export default function HowItWorks() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8 lg:max-w-3xl">
+        {/* En dessous de lg (pas de téléphone flottant) : mise en page
+            d'origine, chaque étape auto-contenue. */}
+        <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8 lg:hidden">
           {steps.map((step, i) => (
             <Reveal
               key={step.number}
@@ -71,6 +74,47 @@ export default function HowItWorks() {
               </div>
             </Reveal>
           ))}
+        </div>
+
+        {/* À partir de lg : espace réservé à droite pour le téléphone,
+            colonnes alignées ligne par ligne (numéro / titre / texte /
+            note) pour garantir un alignement strict entre les 3 étapes. */}
+        <div className="mt-16 hidden lg:block lg:pr-[300px] xl:pr-[360px]">
+          <div className="grid grid-cols-3 gap-x-10 xl:gap-x-14">
+            {steps.map((step, i) => (
+              <Reveal key={`num-${step.number}`} delayMs={i * 120} className="flex justify-center">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-violet/10 text-lg font-bold text-violet">
+                  {step.number}
+                </span>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-5 grid grid-cols-3 gap-x-10 xl:gap-x-14">
+            {steps.map((step, i) => (
+              <Reveal key={`title-${step.number}`} delayMs={i * 120} className="text-center">
+                <h3 className="text-base font-bold">{step.title}</h3>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-2 grid grid-cols-3 gap-x-10 xl:gap-x-14">
+            {steps.map((step, i) => (
+              <Reveal key={`text-${step.number}`} delayMs={i * 120} className="text-center">
+                <p className="text-sm leading-relaxed text-ink/60">{step.text}</p>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-2 grid grid-cols-3 gap-x-10 xl:gap-x-14">
+            {steps.map((step, i) => (
+              <Reveal key={`note-${step.number}`} delayMs={i * 120} className="text-center">
+                {step.note && (
+                  <p className="text-xs font-medium text-ink/40">{step.note}</p>
+                )}
+              </Reveal>
+            ))}
+          </div>
         </div>
 
         <Reveal delayMs={200} className="mx-auto mt-12 max-w-sm text-center lg:mx-0 lg:max-w-xs lg:text-left">
