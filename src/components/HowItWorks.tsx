@@ -23,8 +23,22 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="comment-ca-marche" className="bg-cream py-24">
-      <div className="mx-auto max-w-page px-5 sm:px-8">
+    <section id="comment-ca-marche" className="relative overflow-visible bg-cream py-24">
+      {/* Sur grand écran, le téléphone flotte dans la marge droite et
+          déborde volontairement sur la section suivante — purement
+          décoratif, retiré du flux pour ne pas alourdir le bloc. */}
+      <Reveal
+        delayMs={220}
+        className="pointer-events-none absolute right-6 top-16 z-10 hidden translate-y-28 lg:block xl:right-12"
+      >
+        <PhoneMockup
+          label="Écran Accueil"
+          src={screenshots.accueil}
+          className="w-[210px] xl:w-[240px]"
+        />
+      </Reveal>
+
+      <div className="relative mx-auto max-w-page px-5 sm:px-8">
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet">
             Comment ça marche ?
@@ -34,7 +48,7 @@ export default function HowItWorks() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
+        <div className="mt-16 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8 lg:max-w-3xl">
           {steps.map((step, i) => (
             <Reveal
               key={step.number}
@@ -59,16 +73,22 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        <Reveal delayMs={200} className="mt-20 flex flex-col items-center text-center">
-          <PhoneMockup
-            label="Écran Accueil"
-            src={screenshots.accueil}
-            className="w-[240px] sm:w-[260px]"
-          />
-          <p className="mt-6 max-w-sm text-sm font-medium text-ink/60">
+        <Reveal delayMs={200} className="mx-auto mt-12 max-w-sm text-center lg:mx-0 lg:max-w-xs lg:text-left">
+          <p className="text-sm font-medium text-ink/60">
             Aujourd&rsquo;hui, cette semaine, à anticiper&nbsp;: tout est
             rassemblé au même endroit, pour que rien ne vous échappe jamais.
           </p>
+        </Reveal>
+
+        {/* Version mobile/tablette : le téléphone reste dans le flux,
+            centré sous le texte, puisqu'il n'y a pas de marge latérale
+            disponible pour le faire flotter. */}
+        <Reveal delayMs={220} className="mt-10 flex justify-center lg:hidden">
+          <PhoneMockup
+            label="Écran Accueil"
+            src={screenshots.accueil}
+            className="w-[220px] sm:w-[240px]"
+          />
         </Reveal>
       </div>
     </section>
