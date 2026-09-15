@@ -9,7 +9,9 @@ dépendance partagée, aucun backend, aucune base de données.
 - Vite + React + TypeScript
 - Tailwind CSS v4 (thème CSS-first via `@theme` dans `src/index.css`)
 - Aucune librairie de routing : page unique avec ancres (`#fonctionnalites`, etc.)
-  + 2 pages statiques annexes (`confidentialite.html`, `contact.html`)
+  + une page annexe (`partenaires.html`). Confidentialité/Contact n'ont pas
+  de page dédiée : ce sont de petits panneaux dépliants dans le footer
+  (voir `src/components/Footer.tsx`).
 
 ## Lancer le site en local
 
@@ -31,8 +33,7 @@ npm run preview
 
 ```
 index.html                 Page principale (entrée Vite)
-confidentialite.html       Page légale (placeholder de contenu)
-contact.html               Page de contact (mailto)
+partenaires.html           Page programme partenaire (+ formulaire mailto)
 src/
   components/
     Header.tsx, Hero.tsx, Features.tsx, SmartCapture.tsx,
@@ -74,8 +75,11 @@ Tout ce qui suit est un **placeholder clairement identifié** dans le code
    dans `index.html`) — favicon par défaut de Vite, og-image absente. À fournir.
 6. **Contenu FAQ** (`src/config/faq.ts`) — questions en place, réponses vides
    intentionnellement (pas de réponse produit inventée).
-7. **Pages légales** (`confidentialite.html`) — placeholder de contenu, à
-   compléter avec la vraie politique de confidentialité.
+7. **Confidentialité** (panneau dans `Footer.tsx`) — résumé minimal en
+   attendant une politique de confidentialité complète. À noter : si
+   l'app est soumise sur l'App Store/Google Play, ces stores exigent une
+   URL publique dédiée pour la politique de confidentialité — un panneau
+   dans le footer ne suffira pas à ce moment-là, il faudra une vraie page.
 
 ## À brancher dès que disponible
 

@@ -12,4 +12,4 @@ export const socialLinks = {
   x: "",
 };
 
-export const contactEmail = "contact@pensif.app";
+export const contactEmail = "app.pensif@gmail.com";
