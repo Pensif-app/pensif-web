@@ -1,5 +1,4 @@
 import PhoneMockup from "./PhoneMockup";
-import StoreBadges from "./StoreBadges";
 import Reveal from "./Reveal";
 import { screenshots } from "../config/screenshots";
 
@@ -19,17 +18,16 @@ export default function Hero() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-light">
             Petites attentions. Grands liens.
           </p>
-          <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl xl:text-6xl">
+          <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl xl:text-6xl">
             Pensez à eux.
             <br />
             <span className="text-violet-light">Pensif pense au reste.</span>
           </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-white/60 sm:text-lg">
+          <p className="mt-8 max-w-lg text-base leading-loose text-white/60 sm:text-lg">
             Anniversaires, envies, idées cadeaux, petites préférences&hellip;
             Pensif garde en mémoire ce qui compte pour vos proches et vous le
             rappelle au bon moment.
           </p>
-          <StoreBadges className="mt-8" />
         </Reveal>
 
         <Reveal delayMs={150} className="relative flex justify-center lg:justify-end">

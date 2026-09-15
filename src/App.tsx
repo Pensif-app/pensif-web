@@ -22,8 +22,8 @@ export default function App() {
         <HowItWorks />
         <EmotionalSection />
         <Faq />
-        <Partners />
         <DownloadCta />
+        <Partners />
       </main>
       <Footer />
     </>
