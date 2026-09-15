@@ -29,12 +29,12 @@ export default function HowItWorks() {
           décoratif, retiré du flux pour ne pas alourdir le bloc. */}
       <Reveal
         delayMs={220}
-        className="pointer-events-none absolute right-6 top-16 z-10 hidden translate-y-28 lg:block xl:right-12"
+        className="pointer-events-none absolute right-20 top-16 z-10 hidden lg:block xl:right-28"
       >
         <PhoneMockup
           label="Écran Accueil"
           src={screenshots.accueil}
-          className="w-[210px] xl:w-[240px]"
+          className="w-[260px] xl:w-[290px]"
         />
       </Reveal>
 
@@ -87,7 +87,7 @@ export default function HowItWorks() {
           <PhoneMockup
             label="Écran Accueil"
             src={screenshots.accueil}
-            className="w-[220px] sm:w-[240px]"
+            className="w-[240px] sm:w-[270px]"
           />
         </Reveal>
       </div>
