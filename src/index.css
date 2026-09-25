@@ -80,3 +80,194 @@
     }
   }
 }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Navbar secondaire (adaptation Web de FloatingTabBar, thème sombre natif).
+   Valeurs natives : actif #A78BFA · inactif #A8A8BA · fond rgba(33,33,58,.6) ·
+   bordure #2B2B47 · pilule rgba(114,87,232,.16) / bordure rgba(149,129,242,.45) ·
+   rayon 26 · icône 22 · label 10px/600 · scale actif 1.22.
+   ─────────────────────────────────────────────────────────────────────────── */
+.secnav {
+  --secnav-pill-pad: 3px;
+  position: fixed;
+  z-index: 40;
+  left: 16px;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+  opacity: 0;
+  pointer-events: none;
+  translate: 0 12px;
+  transition: opacity 0.3s ease, translate 0.3s ease, scale 0.22s ease;
+}
+.secnav.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  translate: 0 0;
+}
+.secnav__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  border: 1px solid #2b2b47;
+  background: rgba(33, 33, 58, 0.6);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  transition: opacity 0.22s ease;
+}
+.secnav__list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.secnav__pill {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(149, 129, 242, 0.45);
+  background: rgba(114, 87, 232, 0.16);
+  transition: top 0.38s cubic-bezier(0.34, 1.35, 0.5, 1), left 0.38s cubic-bezier(0.34, 1.35, 0.5, 1),
+    width 0.38s cubic-bezier(0.34, 1.35, 0.5, 1), height 0.38s cubic-bezier(0.34, 1.35, 0.5, 1),
+    opacity 0.22s ease;
+  pointer-events: none;
+}
+.secnav__item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: #a8a8ba;
+  font: inherit;
+  transition: color 0.22s ease, opacity 0.22s ease;
+}
+.secnav__item[data-active="true"] {
+  color: #a78bfa;
+}
+.secnav__item:focus-visible {
+  outline: 2px solid #a78bfa;
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+.secnav__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: scale 0.28s cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+.secnav__item[data-active="true"] .secnav__content {
+  scale: 1.22;
+}
+.secnav__label {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.secnav__mark {
+  width: 22px;
+  height: 22px;
+  background-color: currentColor;
+  -webkit-mask: url("/logo/nav-pensees-mark.png") center / contain no-repeat;
+  mask: url("/logo/nav-pensees-mark.png") center / contain no-repeat;
+}
+
+/* Desktop : colonne verticale fixe à droite, centrée verticalement.
+   Échelle responsive cohérente via --u (longueur ≈ facteur × 1px, 1px = natif) :
+   1.05 à 1024 px → 1.30 à 1280 px → plafonnée à 1.40 dès ~1600 px (min de deux
+   droites = courbe concave, continue, sans saut entre breakpoints). Icônes,
+   texte, paddings, gaps, rayon, pilule et largeur grandissent ensemble.
+   Mobile : --u reste à 1px, dimensions natives inchangées. */
+@media (min-width: 1024px) {
+  .secnav {
+    --u: clamp(
+      1.05px,
+      min(calc(1.05px + (100vw - 1024px) * 0.00098), calc(1.3px + (100vw - 1280px) * 0.000375)),
+      1.4px
+    );
+    --secnav-pill-pad: calc(3 * var(--u));
+    left: auto;
+    right: clamp(24px, 2.5vw, 52px);
+    bottom: auto;
+    top: 50%;
+    width: calc(78 * var(--u));
+    translate: 0 -50%;
+  }
+  .secnav.is-visible {
+    translate: 0 -50%;
+  }
+  .secnav__bg {
+    border-radius: calc(26 * var(--u));
+  }
+  .secnav__list {
+    flex-direction: column;
+    gap: calc(4 * var(--u));
+    padding: calc(10 * var(--u));
+  }
+  .secnav__item {
+    flex: none;
+    padding: calc(8 * var(--u)) 0;
+  }
+  .secnav__content {
+    gap: calc(2 * var(--u));
+  }
+  .secnav__content svg {
+    width: calc(22 * var(--u));
+    height: calc(22 * var(--u));
+  }
+  .secnav__mark {
+    width: calc(22 * var(--u));
+    height: calc(22 * var(--u));
+  }
+  .secnav__label {
+    font-size: calc(10 * var(--u));
+  }
+}
+
+/* Desktop avec souris : repos discret (~0.3), actif plus lisible (~0.7),
+   plein opacité + léger scale au survol de la barre. */
+@media (min-width: 1024px) and (hover: hover) {
+  .secnav {
+    scale: 0.96;
+  }
+  .secnav.is-visible:hover {
+    scale: 1;
+  }
+  .secnav .secnav__bg {
+    opacity: 0.35;
+  }
+  .secnav .secnav__item {
+    opacity: 0.32;
+  }
+  .secnav .secnav__item[data-active="true"] {
+    opacity: 0.72;
+  }
+  .secnav .secnav__pill {
+    opacity: 0.7;
+  }
+  .secnav:hover .secnav__bg,
+  .secnav:hover .secnav__item,
+  .secnav:hover .secnav__item[data-active="true"],
+  .secnav:hover .secnav__pill {
+    opacity: 1;
+  }
+  .secnav__item[data-active="false"]:hover {
+    color: #a78bfa;
+  }
+  .secnav__item[data-active="false"]:hover .secnav__content {
+    scale: 1.07;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secnav,
+  .secnav__pill,
+  .secnav__content {
+    transition: none;
+  }
+}

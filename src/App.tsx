@@ -1,5 +1,7 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import AppTour from "./components/AppTour";
+import SectionNav from "./components/SectionNav";
 import Features from "./components/Features";
 import GiftIdeas from "./components/GiftIdeas";
 import SmartCapture from "./components/SmartCapture";
@@ -16,6 +18,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <AppTour />
         <Features />
         <GiftIdeas />
         <SmartCapture />
@@ -25,6 +28,7 @@ export default function App() {
         <DownloadCta />
         <Partners />
       </main>
+      <SectionNav />
       <Footer />
     </>
   );

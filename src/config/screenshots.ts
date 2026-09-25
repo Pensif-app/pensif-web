@@ -8,4 +8,5 @@ export const screenshots = {
   calendrier: "/screenshots/calendrier.png",
   capture: "/screenshots/capture.png",
   accueil: "/screenshots/accueil.png",
+  proches: "/screenshots/proches.png",
 };
