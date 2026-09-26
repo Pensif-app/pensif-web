@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navLinks } from "../config/nav";
 import PensifLogo from "./PensifLogo";
 import StoreBadges from "./StoreBadges";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // Mesure réelle de la BARRE du header (hors menu mobile déplié, pour que les
+  // sections ne sautent pas à l'ouverture du menu) exposée en --header-h :
+  // sert au calcul des sections plein écran et au scroll-padding du snap.
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const bar = el.firstElementChild as HTMLElement;
+    const sync = () => document.documentElement.style.setProperty("--header-h", `${bar.offsetHeight + 1}px`); // +1 = border-b
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(bar);
+    return () => ro.disconnect();
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-night/90 backdrop-blur">
-      <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-3 sm:px-8">
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-white/5 bg-night/90 backdrop-blur">
+      <div className="mx-auto flex h-[60px] max-w-page items-center justify-between gap-4 px-5 sm:px-8 md:h-[77px]">
         <a href="/#top" className="flex items-center gap-2.5">
           <PensifLogo size={32} variant="mark" />
           <span className="text-lg font-bold text-white">Pensif</span>
@@ -27,7 +42,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <StoreBadges />
+          <StoreBadges appStoreOnly />
         </div>
 
         <button
@@ -54,14 +69,28 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  // Le menu ouvert allonge le header sticky : on le ferme d'abord, puis on défile une fois
+                  // la hauteur du header (--header-h) revenue à la normale, sinon le début de section est masqué.
+                  const id = link.href.split("#")[1];
+                  const target = id ? document.getElementById(id) : null;
+                  setMenuOpen(false);
+                  if (!target) return;
+                  e.preventDefault();
+                  requestAnimationFrame(() =>
+                    requestAnimationFrame(() => {
+                      target.scrollIntoView({ block: "start" });
+                      history.replaceState(null, "", `#${id}`);
+                    }),
+                  );
+                }}
                 className="rounded-lg px-2 py-2.5 text-sm font-medium text-white/80 transition hover:bg-white/5"
               >
                 {link.label}
               </a>
             ))}
           </nav>
-          <StoreBadges className="mt-4" />
+          <StoreBadges appStoreOnly className="mt-4" />
         </div>
       )}
     </header>

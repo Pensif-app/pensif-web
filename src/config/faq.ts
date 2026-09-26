@@ -39,6 +39,26 @@ export const faqItems: FaqItem[] = [
   {
     question: "Sur quelles plateformes Pensif est-il disponible ?",
     answer:
-      "Pensif est conçu pour iPhone et Android. Les boutons App Store et Google Play de cette page vous permettront de télécharger la version correspondant à votre appareil dès sa disponibilité.",
+      "Pensif est actuellement disponible sur iPhone via l'App Store. Une version Android pourra être proposée ultérieurement.",
+  },
+  {
+    question: "Puis-je modifier ce que Pensif a compris ?",
+    answer:
+      "Oui. Après une Capture, Pensif vous montre ce qu'il a compris : vous pouvez corriger le texte, le proche associé, la date et le rappel avant d'enregistrer.",
+  },
+  {
+    // Wording volontairement limité à ce qui est établi : AUCUNE affirmation sur la suppression,
+    // la durée de conservation, le stockage ou le chiffrement chez un fournisseur tant que
+    // l'audit STT n'est pas finalisé.
+    question: "Que devient ma voix après une Capture ?",
+    answer:
+      "L'audio de votre Capture sert au traitement de celle-ci : Pensif en tire une proposition de pensée, qu'il vous affiche pour validation avant tout enregistrement.",
+  },
+  {
+    // Aligné sur le flow réel (AuthGateScreen / SettingsScreen / authRepo) : compte anonyme par défaut
+    // ("Commencer"), récupérable seulement après "Sécuriser mes données" (e-mail + code) dans les Réglages.
+    question: "Comment retrouver mes données sur un nouvel iPhone ?",
+    answer:
+      "Vos données sont sauvegardées et synchronisées avec votre compte. Pour pouvoir les retrouver sur un nouvel iPhone, sécurisez d'abord votre compte avec votre adresse e-mail depuis les Réglages (« Sécuriser mes données »). Sur le nouvel iPhone, choisissez ensuite « J'ai déjà un compte », saisissez cette adresse e-mail puis le code reçu par e-mail. Sans cette étape, un compte créé simplement avec « Commencer » ne peut pas être retrouvé sur un autre appareil.",
   },
 ];

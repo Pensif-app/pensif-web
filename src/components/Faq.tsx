@@ -11,7 +11,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left"
+        className="flex w-full items-center justify-between gap-4 py-4 text-left"
       >
         <span className="text-sm font-semibold sm:text-base">{question}</span>
         <span
@@ -26,9 +26,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
         style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <p className="pb-5 text-sm leading-relaxed text-ink/60">
-            {answer || "Réponse à venir."}
-          </p>
+          <p className="pb-4 text-sm leading-relaxed text-ink/60">{answer || "Réponse à venir."}</p>
         </div>
       </div>
     </div>
@@ -36,21 +34,26 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function Faq() {
+  // Deux colonnes indépendantes sur desktop (les réponses dépliées ne
+  // décalent que leur propre colonne).
+  const half = Math.ceil(faqItems.length / 2);
+  const columns = [faqItems.slice(0, half), faqItems.slice(half)];
+
   return (
-    <section id="faq" className="bg-cream py-24">
-      <div className="mx-auto max-w-2xl px-5 sm:px-8">
+    <section id="faq" className="snap-screen snap-screen--flow bg-cream py-10 lg:py-8">
+      <div className="mx-auto w-full max-w-[1150px] px-5 sm:px-8">
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet">
-            FAQ
-          </p>
-          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
-            Vos questions, nos réponses
-          </h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet">FAQ</p>
+          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl xl:text-5xl">Vos questions, nos réponses</h2>
         </Reveal>
 
-        <Reveal delayMs={100} className="mt-12">
-          {faqItems.map((item) => (
-            <FaqRow key={item.question} {...item} />
+        <Reveal delayMs={100} className="mt-8 grid grid-cols-1 items-start gap-x-12 lg:mt-10 lg:grid-cols-2">
+          {columns.map((col, i) => (
+            <div key={i}>
+              {col.map((item) => (
+                <FaqRow key={item.question} {...item} />
+              ))}
+            </div>
           ))}
         </Reveal>
       </div>

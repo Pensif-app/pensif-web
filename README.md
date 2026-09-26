@@ -36,7 +36,7 @@ index.html                 Page principale (entrée Vite)
 partenaires.html           Page programme partenaire (+ formulaire mailto)
 src/
   components/
-    Header.tsx, Hero.tsx, Features.tsx, SmartCapture.tsx,
+    Header.tsx, Hero.tsx, SmartCapture.tsx,
     HowItWorks.tsx, EmotionalSection.tsx, Faq.tsx, DownloadCta.tsx,
     Footer.tsx               → une section = un composant
     PhoneMockup.tsx           → cadre téléphone réutilisable

@@ -1,69 +1,68 @@
+import { IoArrowDown, IoChatbubbleEllipsesOutline, IoCheckmarkCircle, IoMicOutline, IoNotificationsOutline } from "react-icons/io5";
 import PhoneMockup from "./PhoneMockup";
 import Reveal from "./Reveal";
 import { screenshots } from "../config/screenshots";
 
+// Séquence : je dis → Pensif structure → je valide. Exemple illustratif (aucun flux réel branché).
+const stepLabel = "flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-violet-light/50";
+const resultCard = "flex items-center gap-3 rounded-2xl bg-white/[0.06] px-4 py-3 ring-1 ring-white/10";
+
 export default function SmartCapture() {
   return (
-    <section className="bg-cream-soft py-24">
-      <div className="mx-auto grid max-w-page grid-cols-1 items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
-        <Reveal className="flex justify-center lg:order-1 lg:justify-start">
-          <PhoneMockup
-            label="Écran Capture"
-            src={screenshots.capture}
-            className="w-[260px] sm:w-[290px]"
-          />
+    <section id="capture" className="snap-screen capture-bg py-8 lg:py-6">
+      <div className="mx-auto grid w-full max-w-[1150px] grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+        <Reveal className="flex justify-center">
+          <div className="accueil-phone">
+            <PhoneMockup label="Écran Capture" src={screenshots.capture} className="phone-w" />
+          </div>
         </Reveal>
 
-        <Reveal delayMs={100} className="lg:order-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet">
+        <Reveal delayMs={100}>
+          <p className="inline-flex items-center rounded-full border border-violet-light/35 bg-violet/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-violet-light">
             Capture intelligente
           </p>
-          <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
-            Dites-le.
-            <br />
-            Pensif s&rsquo;en souvient.
+          <h2 className="mt-5 text-3xl font-extrabold leading-tight text-white sm:text-4xl xl:text-5xl">
+            <span className="accueil-line accueil-line--title block w-fit">Dites-le.</span>
+            <span className="accueil-line accueil-line--title block w-fit lg:whitespace-nowrap">Pensif s&rsquo;en souvient.</span>
           </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-ink/60">
-            Capture n&rsquo;est pas un simple assistant vocal : chaque
-            phrase que vous dites vient alimenter la mémoire relationnelle de
-            Pensif, directement dans le profil du bon proche.
+          <p className="capture-desc mt-6 max-w-lg font-hand text-xl leading-[1.8] text-white/75 lg:mt-8 xl:text-2xl">
+            <span className="accueil-line accueil-line--desc lg:block lg:w-fit lg:whitespace-nowrap">Dites naturellement ce que vous voulez retenir.</span>{" "}
+            <span className="accueil-line accueil-line--desc lg:block lg:w-fit lg:whitespace-nowrap">Pensif transforme votre capture en pensée, rappel</span>{" "}
+            <span className="accueil-line accueil-line--desc lg:block lg:w-fit lg:whitespace-nowrap">ou information liée à un proche.</span>
           </p>
 
-          <blockquote className="mt-6 max-w-md rounded-2xl bg-white p-4 text-sm italic leading-relaxed text-ink/70 shadow-sm ring-1 ring-black/5">
-            &laquo; Yohan aimerait une nouvelle montre et rappelle-moi de lui
-            écrire vendredi à 18h. &raquo;
-          </blockquote>
-
-          <div className="mt-6 max-w-md space-y-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
-            <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet/10 text-sm">
-                ✓
+          <div className="capture-flow mt-8 max-w-lg space-y-2.5 lg:mt-9">
+            <p className={stepLabel}>Vous dites</p>
+            <blockquote className="flex items-start gap-3 rounded-3xl bg-white/[0.03] px-5 py-4 text-sm italic leading-relaxed text-white/80 ring-1 ring-white/[0.05]">
+              <IoMicOutline size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-violet-light/45" />
+              <span>
+                &laquo;&nbsp;Yohan aimerait une nouvelle montre et rappelle-moi de lui écrire vendredi à 18&nbsp;h.&nbsp;&raquo;
               </span>
-              <p className="text-sm font-medium">
-                Pensée ajoutée à Yohan
-                <span className="block text-xs font-normal text-ink/50">
-                  &laquo; Yohan aimerait une nouvelle montre &raquo;
-                </span>
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet/10 text-sm">
-                🔔
-              </span>
-              <p className="text-sm font-medium">
-                Rappel
-                <span className="block text-xs font-normal text-ink/50">
-                  Vendredi · 18h
-                </span>
-              </p>
-            </div>
-          </div>
+            </blockquote>
 
-          <div className="mt-4 max-w-md rounded-2xl border border-dashed border-ink/15 p-4 text-sm text-ink/60">
-            &laquo; Sofia adore les restaurants japonais. &raquo;
-            <span className="mt-1 block text-xs text-ink/40">
-              → Pensée mémorisée dans le profil de Sofia
-            </span>
+            <p className={`${stepLabel} pt-1`}>
+              <IoArrowDown size={11} aria-hidden="true" className="opacity-70" />
+              Pensif structure
+            </p>
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <div className={resultCard}>
+                <IoChatbubbleEllipsesOutline size={20} aria-hidden="true" className="shrink-0 text-violet-light" />
+                <p className="text-sm font-medium text-white">Pensée liée à Yohan</p>
+              </div>
+              <div className={resultCard}>
+                <IoNotificationsOutline size={20} aria-hidden="true" className="shrink-0 text-violet-light" />
+                <p className="text-sm font-medium text-white">Rappel vendredi · 18&nbsp;h</p>
+              </div>
+            </div>
+
+            <p className={`${stepLabel} pt-1`}>
+              <IoArrowDown size={11} aria-hidden="true" className="opacity-70" />
+              Vous validez
+            </p>
+            <p className="flex items-center gap-2.5 text-sm text-white/70">
+              <IoCheckmarkCircle size={18} aria-hidden="true" className="shrink-0 text-violet-light" />
+              Vous vérifiez toujours le résultat avant de l&rsquo;enregistrer.
+            </p>
           </div>
         </Reveal>
       </div>

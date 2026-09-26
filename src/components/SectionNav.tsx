@@ -63,8 +63,8 @@ export default function SectionNav() {
             pill
               ? {
                   top: `calc(${pill.top}px - var(--secnav-pill-pad))`,
-                  left: `calc(${pill.left}px - var(--secnav-pill-pad))`,
-                  width: `calc(${pill.width}px + 2 * var(--secnav-pill-pad))`,
+                  left: `calc(${pill.left}px - var(--secnav-pill-padx, var(--secnav-pill-pad)))`,
+                  width: `calc(${pill.width}px + 2 * var(--secnav-pill-padx, var(--secnav-pill-pad)))`,
                   height: `calc(${pill.height}px + 2 * var(--secnav-pill-pad))`,
                 }
               : { opacity: 0 }

@@ -2,6 +2,8 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", system-ui, "Segoe UI", Roboto, sans-serif;
+  /* Accent de marque ponctuel (signature manuscrite), jamais police principale. */
+  --font-hand: "Shadows Into Light", "Segoe Print", "Bradley Hand", cursive;
 
   --color-night: #0c0a1f;
   --color-night-soft: #16132f;
@@ -191,6 +193,8 @@
       1.4px
     );
     --secnav-pill-pad: calc(3 * var(--u));
+    /* Pilule active un peu plus large (+8u au total) : « Calendrier » (scale actif) respire. */
+    --secnav-pill-padx: calc(7 * var(--u));
     left: auto;
     right: clamp(24px, 2.5vw, 52px);
     bottom: auto;
@@ -238,17 +242,18 @@
   .secnav.is-visible:hover {
     scale: 1;
   }
+  /* Repos un peu plus lisible : la navbar n'apparaît que sur les sections claires. */
   .secnav .secnav__bg {
-    opacity: 0.35;
+    opacity: 0.45;
   }
   .secnav .secnav__item {
-    opacity: 0.32;
+    opacity: 0.42;
   }
   .secnav .secnav__item[data-active="true"] {
-    opacity: 0.72;
+    opacity: 0.85;
   }
   .secnav .secnav__pill {
-    opacity: 0.7;
+    opacity: 0.8;
   }
   .secnav:hover .secnav__bg,
   .secnav:hover .secnav__item,
@@ -269,5 +274,306 @@
   .secnav__pill,
   .secnav__content {
     transition: none;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Sections plein écran : 1 scroll = 1 section, en CSS scroll-snap natif (aucun
+   handler wheel JS). Le scroll reste celui de la fenêtre (pas de double scroll).
+   --header-h est mesuré par Header.tsx (repli 61px avant hydratation).
+   scroll-padding-top aligne snap, ancres et scrollIntoView SOUS le header sticky.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Valeurs EXACTES de la hauteur du header (barre fixée à 60/77px + 1px de bordure, voir
+     Header.tsx) : le premier layout (avant que le JS ne mesure) est déjà correct, donc le
+     scroll-snap initial s'aligne sur le bon offset et le Hero remplit l'écran sans bande. */
+  --header-h: 61px;
+}
+@media (min-width: 768px) {
+  :root {
+    --header-h: 78px;
+  }
+}
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--header-h);
+}
+/* Sections plein écran de cette passe (Hero + 4 sections app). */
+.snap-screen {
+  min-height: calc(100dvh - var(--header-h));
+  display: flex;
+  align-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* Hauteur cible d'un téléphone : mobile = contenu empilé, pas de 100dvh forcé. */
+  --ph: min(52dvh, 480px);
+}
+@media (min-width: 1024px) {
+  .snap-screen {
+    height: calc(100dvh - var(--header-h));
+    --ph: calc((100dvh - var(--header-h)) * 0.72);
+  }
+}
+/* Variante à contenu extensible (FAQ dépliable, dernière section) : plein écran
+   au minimum, mais peut grandir plutôt que de couper. */
+@media (min-width: 1024px) {
+  .snap-screen.snap-screen--flow {
+    height: auto;
+  }
+}
+/* Écrans desktop très bas (ex. 1366×640) : le contenu ne doit jamais être coupé. */
+@media (min-width: 1024px) and (max-height: 620px) {
+  .snap-screen {
+    height: auto;
+  }
+}
+/* Largeur d'un téléphone d'après sa hauteur cible (ratio 9/19.5). */
+.phone-w {
+  width: calc(var(--ph) * var(--k, 1) * 0.4615);
+}
+/* Le reste de la page garde un snap "start" simple (sections plus hautes que
+   l'écran : défilement libre à l'intérieur, sans piège du mandatory). */
+main > section:not(.snap-screen),
+footer {
+  scroll-snap-align: start;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  .snap-screen {
+    scroll-snap-stop: normal;
+  }
+}
+
+/* Hero mobile : deux téléphones côte à côte doivent tenir dans 375px. */
+@media (max-width: 1023px) {
+  #top.snap-screen {
+    --ph: min(34dvh, 300px);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Hero : hover premium + parallax souris léger (desktop avec souris uniquement).
+   --px / --py (-1..1) sont écrits par Hero.tsx via requestAnimationFrame ; tout
+   le mouvement passe par les propriétés individuelles translate/rotate/scale.
+   ─────────────────────────────────────────────────────────────────────────── */
+.hero-phone--front {
+  rotate: -4deg;
+}
+.hero-phone--back {
+  rotate: 4deg;
+}
+.hero-card {
+  display: none;
+}
+/* Bulles visibles dès 1280px seulement (à droite des téléphones) : en dessous, pas la
+   place sans chevaucher les téléphones ni faire déborder le groupe. */
+@media (min-width: 1280px) {
+  .hero-card {
+    display: block;
+  }
+}
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-phone,
+  .hero-card {
+    transition: translate 0.45s ease-out, rotate 0.45s ease-out, scale 0.45s ease-out;
+    will-change: translate;
+  }
+  .hero-phone--front {
+    translate: calc(var(--px, 0) * 5px) calc(var(--py, 0) * 4px);
+  }
+  .hero-phone--back {
+    translate: calc(var(--px, 0) * 9px) calc(var(--py, 0) * 5px);
+  }
+  .hero-card {
+    translate: calc(var(--px, 0) * -4px) calc(var(--py, 0) * -3px);
+  }
+  .hero-visual:hover .hero-phone--front {
+    rotate: -2deg;
+    scale: 1.015;
+    translate: calc(var(--px, 0) * 5px) calc(var(--py, 0) * 4px - 10px);
+  }
+  .hero-visual:hover .hero-phone--back {
+    rotate: 2deg;
+    scale: 1.01;
+    translate: calc(var(--px, 0) * 9px + 8px) calc(var(--py, 0) * 5px - 6px);
+  }
+}
+
+/* Hero : micro-zoom typographique, INDÉPENDANT par ligne (survol de la ligne seule, pas de
+   la zone texte). Titre 1.012 / 1.018, description 1.01 + légère montée d'opacité ; courbe
+   ease-out douce, sans rebond ni translation. Desktop + souris uniquement, désactivé sous
+   prefers-reduced-motion. */
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-line {
+    transform-origin: left center;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease-out;
+  }
+  .hero-line--3 {
+    opacity: 0.88;
+  }
+  .hero-line--1:hover {
+    scale: 1.012;
+  }
+  .hero-line--2:hover {
+    scale: 1.018;
+  }
+  .hero-line--3:hover {
+    scale: 1.01;
+    opacity: 1;
+  }
+}
+
+/* ≥ 2xl, « Pensif pense au reste. » tient sur une seule ligne : c'est alors le conteneur
+   qui réagit (une ligne = un effet), pas chacun des deux morceaux. */
+@media (min-width: 1536px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-line-2w {
+    transform-origin: left center;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-line-2w:hover {
+    scale: 1.018;
+  }
+  .hero-line-2w .hero-line--2:hover {
+    scale: 1;
+  }
+}
+
+/* Accueil : même règle que le Hero, ligne par ligne (titre, description). Catégories stables. */
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .accueil-line {
+    transform-origin: left center;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .accueil-line--title:hover {
+    scale: 1.014;
+  }
+  .accueil-line--desc:hover {
+    scale: 1.008;
+  }
+}
+
+/* Section Accueil : fond lilas-gris doux (transition moins brutale depuis le Hero sombre),
+   dégradé quasi imperceptible + très légère ombre intérieure en haut. */
+.accueil-bg {
+  background: linear-gradient(180deg, #e9e4f3 0%, #f1eef7 45%, #f4f1f8 100%);
+  box-shadow: inset 0 16px 20px -16px rgba(12, 10, 31, 0.18);
+}
+/* Proches : même famille lilas que Accueil, teinte à peine décalée, sans ombre de rupture. */
+.proches-bg {
+  background: linear-gradient(180deg, #f4f1f8 0%, #efebf7 50%, #f3f0f8 100%);
+}
+/* Micro-mouvement du téléphone Accueil (beaucoup plus discret que le Hero) : desktop + souris,
+   désactivé sous prefers-reduced-motion. */
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .accueil-phone {
+    transition: translate 0.45s ease-out, scale 0.45s ease-out;
+  }
+  .accueil-phone:hover {
+    translate: 0 -5px;
+    scale: 1.01;
+  }
+}
+
+/* SectionNav — rendu "verre" sur fonds clairs (la barre n'apparaît que sur les sections claires) :
+   fond translucide lumineux teinté de violet, blur + saturation perceptibles, bordure blanche
+   fine, reflet intérieur ; inactifs discrets, actif plus lisible (accent #7257E8 du thème clair
+   natif). Logique, tailles et hover inchangés. */
+.secnav__bg {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.14)), rgba(114, 87, 232, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 10px 32px -8px rgba(74, 50, 160, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+}
+.secnav__item {
+  color: #7d7a96;
+}
+.secnav__item[data-active="true"] {
+  color: #6a4de0;
+}
+.secnav__pill {
+  border-color: rgba(114, 87, 232, 0.42);
+  background: rgba(114, 87, 232, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+@media (min-width: 1024px) and (hover: hover) {
+  .secnav .secnav__bg {
+    opacity: 0.92;
+  }
+  .secnav .secnav__item {
+    opacity: 0.6;
+  }
+  .secnav .secnav__item[data-active="true"] {
+    opacity: 1;
+  }
+  .secnav .secnav__pill {
+    opacity: 0.95;
+  }
+  .secnav__item[data-active="false"]:hover {
+    color: #6a4de0;
+  }
+}
+
+/* Proches : sur les écrans desktop peu hauts, on resserre légèrement le bloc texte pour que
+   tout (dont le Quiz) tienne dans la section sans être coupé. */
+@media (min-width: 1024px) and (max-height: 830px) {
+  .proches-desc {
+    line-height: 1.7;
+  }
+  .proches-list {
+    margin-top: 2.75rem;
+  }
+  .proches-list > li:not(:last-child) {
+    margin-block-end: 0.75rem;
+  }
+  .proches-quiz {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+  }
+  .pensees-desc {
+    line-height: 1.7;
+  }
+  .pensees-list {
+    margin-top: 2.75rem;
+    row-gap: 1rem;
+  }
+}
+
+/* Pensées : label avec le symbole P Pensif (même masque que la SectionNav, teinte #A78BFA). */
+.pensees-mark {
+  width: 15px;
+  height: 15px;
+  background-color: #a78bfa;
+  -webkit-mask: url("/logo/nav-pensees-mark.png") center / contain no-repeat;
+  mask: url("/logo/nav-pensees-mark.png") center / contain no-repeat;
+}
+
+/* Cadeaux : même règle de hover ligne par ligne que le Hero/Accueil, textes centrés (origine au centre). */
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .gift-line {
+    transform-origin: center;
+    transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .gift-line--title:hover {
+    scale: 1.014;
+  }
+  .gift-line--desc:hover {
+    scale: 1.008;
+  }
+}
+
+/* Capture : fond violet très sombre, même famille que le Hero (marque la rupture après les 4 sections claires). */
+.capture-bg {
+  background: radial-gradient(120% 90% at 20% 0%, #1d1747 0%, #120f30 55%, #0c0a1f 100%);
+}
+@media (min-width: 1024px) and (max-height: 830px) {
+  .capture-desc {
+    line-height: 1.55;
+    margin-top: 1rem;
+  }
+  .capture-flow {
+    margin-top: 1.25rem;
   }
 }
