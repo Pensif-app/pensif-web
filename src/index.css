@@ -577,3 +577,8 @@ footer {
     margin-top: 1.25rem;
   }
 }
+
+/* Page légale longue (politique de confidentialité) : lecture normale, aucun scroll-snap forcé. */
+html:has(.legal-page) {
+  scroll-snap-type: none;
+}
