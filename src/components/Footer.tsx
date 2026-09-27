@@ -7,18 +7,17 @@ const socialIcons: Record<string, string> = {
   x: "𝕏",
 };
 
-// La politique de confidentialité est une vraie page (/confidentialite.html). Conditions, Mentions
-// légales, Support et Contact n'existent pas encore : liens visibles mais non navigables (état "à
-// venir"), sans fausse page ni faux contenu juridique.
-type FooterItem = { kind: "link"; label: string; href: string } | { kind: "soon"; label: string };
+// Toutes les pages du pied de page existent : confidentialité, mentions légales, conditions d'utilisation, support,
+// contact et partenaires.
+type FooterItem = { label: string; href: string };
 
 const FOOTER_ITEMS: FooterItem[] = [
-  { kind: "link", label: "Confidentialité", href: "/confidentialite.html" },
-  { kind: "soon", label: "Conditions d’utilisation" },
-  { kind: "soon", label: "Mentions légales" },
-  { kind: "soon", label: "Support" },
-  { kind: "soon", label: "Contact" },
-  { kind: "link", label: "Partenaires", href: "/partenaires.html" },
+  { label: "Confidentialité", href: "/confidentialite.html" },
+  { label: "Conditions d’utilisation", href: "/conditions-utilisation.html" },
+  { label: "Mentions légales", href: "/mentions-legales.html" },
+  { label: "Support", href: "/support.html" },
+  { label: "Contact", href: "/contact.html" },
+  { label: "Partenaires", href: "/partenaires.html" },
 ];
 
 export default function Footer() {
@@ -34,18 +33,11 @@ export default function Footer() {
           </a>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60 sm:justify-end">
-            {FOOTER_ITEMS.map((item) =>
-              item.kind === "link" ? (
-                <a key={item.label} href={item.href} className="transition hover:text-white">
-                  {item.label}
-                </a>
-              ) : (
-                <span key={item.label} aria-disabled="true" className="cursor-default text-white/25 select-none">
-                  {item.label}
-                  <span className="sr-only"> (bientôt disponible)</span>
-                </span>
-              ),
-            )}
+            {FOOTER_ITEMS.map((item) => (
+              <a key={item.label} href={item.href} className="transition hover:text-white">
+                {item.label}
+              </a>
+            ))}
           </nav>
         </div>
 
