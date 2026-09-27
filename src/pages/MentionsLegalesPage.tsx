@@ -4,17 +4,9 @@ import Footer from "../components/Footer";
 import { contactEmail } from "../config/links";
 
 // Mentions légales du site pensif-app.fr (LCEN, art. 1-1 dans sa version en vigueur depuis le 23 mai 2024 :
-// dénomination, siège, téléphone, RCS/capital, directeur de la publication, hébergeur). Les champs encore
-// inconnus sont marqués « À COMPLÉTER » (surlignés, composant Todo) : reste le téléphone professionnel de YOMIC.
-// Ne rien y inventer (ni téléphone, ni greffe du RCS, ni TVA).
-
-function Todo({ children }: { children: ReactNode }) {
-  return (
-    <mark className="rounded bg-amber-200 px-1 py-0.5 font-semibold text-ink">
-      [{children}]
-    </mark>
-  );
-}
+// dénomination, siège, RCS/capital, directeur de la publication, hébergeur). Le téléphone professionnel de YOMIC
+// n'est pas encore attribué : la ligne est omise plutôt que d'afficher un placeholder public — à ajouter dès qu'il
+// existe (voir section "1. Éditeur du site"). Ne rien y inventer (ni téléphone, ni greffe du RCS, ni TVA).
 
 function H2({ children }: { children: ReactNode }) {
   return <h2 className="mt-10 text-xl font-extrabold text-ink sm:text-2xl">{children}</h2>;
@@ -57,9 +49,6 @@ export default function MentionsLegalesPage() {
                 <a href={`mailto:${contactEmail}`} className={link}>
                   {contactEmail}
                 </a>
-              </li>
-              <li>
-                Téléphone : <Todo>À COMPLÉTER — numéro de téléphone professionnel de YOMIC</Todo>
               </li>
             </ul>
 
