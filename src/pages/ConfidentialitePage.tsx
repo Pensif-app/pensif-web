@@ -3,8 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { contactEmail } from "../config/links";
 
-// Politique de confidentialité de Pensif — mise à jour du 27 septembre 2026. Ne décrire ici que des faits
-// confirmés (audit technique, documentations officielles des prestataires) ; ne rien y inventer.
+// Politique de confidentialité de Pensif. Ne décrire ici que des faits confirmés (audit technique, documentations
+// officielles des prestataires) ; ne rien y inventer. La date de dernière mise à jour est à renseigner à la mise en ligne.
 
 function H2({ id, children }: { id: string; children: ReactNode }) {
   return (
@@ -39,7 +39,7 @@ const SECTIONS: { id: string; title: string }[] = [
   { id: "conservation", title: "Durée de conservation" },
   { id: "suppression", title: "Suppression de vos données ou de votre compte" },
   { id: "securite", title: "Sécurité" },
-  { id: "transferts", title: "Transferts de données hors de l’Union européenne" },
+  { id: "transferts", title: "Sous-traitance et transferts hors de l’Union européenne" },
   { id: "droits", title: "Vos droits" },
   { id: "tiers", title: "Données concernant d’autres personnes" },
   { id: "site", title: "Le site pensif-app.fr" },
@@ -61,7 +61,7 @@ export default function ConfidentialitePage() {
               quels prestataires, pendant combien de temps, et comment les supprimer.
             </p>
             <p className="mt-4 text-sm text-white/45">
-              Dernière mise à jour : 27 septembre 2026
+              Dernière mise à jour : [DATE DE PUBLICATION À RENSEIGNER]
             </p>
           </div>
         </section>
@@ -83,10 +83,10 @@ export default function ConfidentialitePage() {
 
             <H2 id="qui">1. Qui sommes-nous ?</H2>
             <P>
-              Pensif est une application mobile pour iPhone qui aide à retenir ce qui compte pour ses proches : pensées,
-              dates importantes, préférences, rappels. Elle est éditée par YOMIC, SAS au capital social de 1&nbsp;000,00&nbsp;€,
-              immatriculée sous le numéro SIREN 106&nbsp;580&nbsp;228, dont le siège social est situé 50 avenue des
-              Champs-Élysées, 75008 Paris, France.
+              Pensif est une application mobile pour iPhone et iPad qui aide à retenir ce qui compte pour ses proches :
+              pensées, dates importantes, préférences, rappels. Elle est éditée par YOMIC, SAS au capital social de
+              1&nbsp;000,00&nbsp;€, immatriculée sous le numéro SIREN 106&nbsp;580&nbsp;228, dont le siège social est situé
+              50 avenue des Champs-Élysées, 75008 Paris, France.
             </P>
             <P>
               Président et représentant légal : Mickaël PERACHON. Directeur de la publication : Mickaël PERACHON.
@@ -133,13 +133,19 @@ export default function ConfidentialitePage() {
               <li>Les brouillons de messages et de quiz en cours.</li>
               <li>Le fichier audio d’une capture vocale, le temps de son traitement (voir la section 5).</li>
               <li>Une copie locale de vos pensées et proches, pour fonctionner aussi avec une mauvaise connexion.</li>
+              <li>
+                Vos choix d’autorisation pour la Capture vocale et les Réponses intelligentes (la fonction concernée, la
+                date de votre choix et la version du texte que vous avez accepté), enregistrés par compte sur cet
+                appareil.
+              </li>
             </UL>
             <H3>Ce que Pensif ne collecte pas</H3>
             <P>
               Pensif n’utilise ni outil de mesure d’audience, ni publicité, ni suivi entre applications, et ne demande
               ni localisation, ni accès aux photos ou à l’appareil photo. Le champ de saisie d’une pensée est libre :
-              vous décidez de ce que vous y écrivez. Pensif ne demande pas d’informations sensibles (santé, religion,
-              opinions, etc.), mais rien n’empêche techniquement d’en saisir : nous vous invitons à ne pas le faire.
+              vous décidez de ce que vous y écrivez. Il en va de même de ce que vous dites à voix haute lors d’une
+              Capture vocale. Pensif ne demande pas d’informations sensibles (santé, religion, opinions, etc.), mais rien
+              n’empêche techniquement d’en saisir ou d’en dicter : nous vous invitons à ne pas le faire.
             </P>
 
             <H2 id="finalites">3. Pourquoi ces données sont-elles utilisées ?</H2>
@@ -156,9 +162,11 @@ export default function ConfidentialitePage() {
                 usage unique) : pour fournir le service que vous demandez.
               </li>
               <li>
-                <strong>Capture vocale et Réponses intelligentes</strong> : pour fournir des fonctions que vous
-                déclenchez vous-même, une par une ; l’accès au micro est soumis à votre autorisation dans les réglages
-                de l’iPhone.
+                <strong>Capture vocale et Réponses intelligentes</strong> : ces fonctions envoient des données à des
+                prestataires d’intelligence artificielle (Groq et OpenAI, sections 5 et 6). Elles ne fonctionnent que si
+                vous les avez autorisées dans l’application : votre consentement est la base de ce traitement. Vous
+                pouvez le retirer à tout moment (section 14). L’accès au micro est une autre autorisation, distincte,
+                qui se règle dans les réglages de votre appareil.
               </li>
               <li>
                 <strong>Sécurité et prévention des abus</strong> (limites d’utilisation) : intérêt légitime de Pensif à
@@ -183,16 +191,25 @@ export default function ConfidentialitePage() {
               Si vous choisissez « Sécuriser mes données », vous saisissez une adresse e-mail et un code à usage unique
               qui vous est envoyé. Votre compte reste le même, et vous pouvez ensuite retrouver vos données sur un autre
               appareil avec « J’ai déjà un compte » (adresse e-mail et code). Le code est envoyé par e-mail par le
-              service d’authentification de Supabase.
+              service d’authentification de Supabase, qui utilise le service de messagerie d’OVH pour l’envoi : votre
+              adresse e-mail passe donc par ce service (voir la section 9).
             </P>
 
             <H2 id="capture">5. Capture vocale</H2>
+            <P>
+              Avant votre première Capture vocale, Pensif affiche une fenêtre qui précise que votre audio sera transmis
+              à Groq pour être transcrit, puis le texte obtenu à OpenAI pour être analysé, et vous demande de l’autoriser
+              ou de refuser. Si vous refusez, rien n’est enregistré ni envoyé. Votre choix est mémorisé pour votre compte
+              sur cet appareil ; vous pouvez le retirer à tout moment dans Réglages, rubrique « Services d’IA ». Si le
+              contenu de ce traitement change, Pensif vous redemandera votre autorisation.
+            </P>
             <P>Voici, dans l’ordre, ce qui se passe quand vous utilisez la Capture vocale :</P>
             <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-base leading-relaxed text-ink/75">
               <li>Vous maintenez le bouton : l’application enregistre un fichier audio sur votre appareil.</li>
               <li>
                 Au relâchement, l’audio est envoyé à l’infrastructure de Pensif (fonctions Supabase), qui le transmet à
-                Groq, prestataire de transcription (modèle whisper-large-v3).
+                Groq, prestataire de transcription (modèle whisper-large-v3). Avec l’audio, Pensif n’envoie à Groq que le
+                nom « Pensif », qui l’aide à l’orthographier correctement.
               </li>
               <li>
                 Groq renvoie le texte transcrit. Ce texte est envoyé à OpenAI (modèle GPT-5 mini), qui le structure en
@@ -217,17 +234,35 @@ export default function ConfidentialitePage() {
               <li>
                 Le texte transcrit n’est enregistré chez Pensif que si vous validez la pensée qui en résulte.
               </li>
+              <li>
+                Pensif n’envoie ni votre identifiant utilisateur ni votre adresse e-mail à Groq ou à OpenAI. Cela ne rend
+                pas pour autant ces contenus anonymes : votre voix, ce que vous dites et les noms que vous citez peuvent
+                permettre d’identifier une personne (vous ou un tiers), et les prestataires peuvent les traiter comme des
+                données personnelles.
+              </li>
+              <li>
+                Aucun filtre automatique n’est appliqué à ce que vous dites : l’audio et le texte transcrit sont transmis
+                tels quels aux prestataires. Si vous nommez d’autres personnes ou évoquez des sujets sensibles, ces
+                informations leur sont donc transmises aussi.
+              </li>
             </UL>
             <H3>Ce que font nos prestataires</H3>
             <P>
               La conservation par un prestataire dépend de ses propres règles, pas de celles de Pensif. Selon la
-              documentation officielle de Groq (consultée le 26 septembre 2026), Groq ne conserve pas par défaut les
-              données des requêtes d’inférence, dont la transcription audio ; une conservation temporaire, pouvant aller
-              jusqu’à 30 jours, reste possible pour la fiabilité du système ou l’analyse d’abus. Groq indique conserver
-              ses données dans des serveurs situés aux États-Unis.
+              documentation officielle de Groq (consultée le 13 octobre 2026), Groq ne conserve pas par défaut les
+              données des requêtes d’inférence, dont la transcription audio ; elle peut toutefois en conserver
+              temporairement une trace, jusqu’à 30 jours sauf obligation légale de conservation plus longue, pour
+              résoudre des problèmes de fiabilité ou enquêter sur un abus présumé. Groq indique conserver ses données
+              dans des serveurs situés aux États-Unis. Pour OpenAI, voir la section 6.
             </P>
 
             <H2 id="reponses">6. Réponses intelligentes</H2>
+            <P>
+              Avant la première personnalisation, Pensif affiche une fenêtre qui précise les données concernées et leur
+              destinataire (OpenAI) et vous demande de l’autoriser ou de refuser. Si vous refusez, aucune donnée n’est
+              envoyée et votre brouillon reste inchangé. Vous pouvez retirer votre autorisation à tout moment dans
+              Réglages, rubrique « Services d’IA ».
+            </P>
             <P>
               Quand vous demandez à Pensif de personnaliser un message (« Personnaliser avec Pensif »), une requête est
               envoyée à OpenAI (modèle GPT-5 mini) via l’infrastructure de Pensif pour rédiger un brouillon. Cette
@@ -242,13 +277,18 @@ export default function ConfidentialitePage() {
             <P>
               Ces informations ne sont envoyées que pour cette fonction, à votre demande : Pensif n’envoie pas
               automatiquement l’ensemble de vos pensées à OpenAI. Un filtre automatique limité écarte certains sujets
-              sensibles (santé, deuil, addictions, violence) avant l’envoi, sans garantie d’exhaustivité. Le brouillon
-              n’est jamais envoyé à votre proche sans votre action.
+              sensibles (santé, deuil, addictions, violence) dans le texte des pensées envoyées, le souhait du quiz et le
+              texte d’un événement, sans garantie d’exhaustivité ; il ne s’applique pas au prénom ni à la relation. Vos
+              pensées étant en texte libre, elles peuvent mentionner d’autres personnes. Pensif n’envoie ni votre
+              identifiant utilisateur ni votre adresse e-mail à OpenAI, mais cela ne rend pas ces contenus anonymes : un
+              prénom, un souhait ou une pensée peuvent suffire à identifier une personne, et OpenAI peut les traiter comme
+              des données personnelles. Le brouillon n’est jamais envoyé à votre proche sans votre action.
             </P>
             <P>
-              Selon la documentation officielle d’OpenAI (consultée le 26 septembre 2026), les données envoyées à son API
+              Selon la documentation officielle d’OpenAI (consultée le 13 octobre 2026), les données envoyées à son API
               ne sont pas utilisées par défaut pour entraîner ses modèles, et les journaux de prévention des abus sont
-              conservés jusqu’à 30 jours selon le service utilisé et la configuration.
+              conservés jusqu’à 30 jours, sauf obligation légale de conservation plus longue. Ces règles valent aussi
+              pour le texte envoyé lors d’une Capture vocale (section 5).
             </P>
 
             <H2 id="contacts">7. Proches et carnet d’adresses</H2>
@@ -261,11 +301,11 @@ export default function ConfidentialitePage() {
 
             <H2 id="notifications">8. Notifications</H2>
             <P>
-              Les rappels sont programmés localement sur votre iPhone. Pensif ne demande pas d’identifiant de
+              Les rappels sont programmés localement sur votre appareil. Pensif ne demande pas d’identifiant de
               notification à Apple et n’en envoie aucun à ses serveurs : aucun serveur Pensif n’envoie de notification
               à distance. Le titre et le texte d’un rappel viennent de votre pensée ou de l’anniversaire concerné et
               peuvent apparaître sur l’écran verrouillé, selon vos réglages iOS. Vous pouvez désactiver les rappels dans
-              Pensif ou dans les réglages du téléphone.
+              Pensif ou dans les réglages de l’appareil.
             </P>
 
             <H2 id="prestataires">9. Hébergement et prestataires</H2>
@@ -274,20 +314,23 @@ export default function ConfidentialitePage() {
                 <strong>Supabase</strong> : authentification, base de données et fonctions serveur de Pensif. Le projet
                 Pensif est hébergé dans la région eu-west-1 (Irlande). Selon Supabase, la région choisie détermine où
                 sont stockées les données principales du projet ; Supabase agit comme sous-traitant et s’appuie
-                elle-même sur des sous-traitants (notamment Amazon Web Services).
+                elle-même sur des sous-traitants dont elle publie la liste.
               </li>
               <li>
-                <strong>Groq</strong> : transcription de la Capture vocale (section 5).
+                <strong>Groq</strong> : transcription de la Capture vocale (section 5), uniquement si vous l’avez
+                autorisée.
               </li>
               <li>
-                <strong>OpenAI</strong> : structuration de la Capture et Réponses intelligentes (sections 5 et 6).
+                <strong>OpenAI</strong> : structuration de la Capture et Réponses intelligentes (sections 5 et 6),
+                uniquement si vous les avez autorisées.
               </li>
               <li>
                 <strong>Apple</strong> : distribution de l’application (App Store, TestFlight) et fonctions du système
                 (micro, notifications, sélecteur de contacts), soumises aux règles d’Apple.
               </li>
               <li>
-                <strong>OVH</strong> : hébergement du site pensif-app.fr.
+                <strong>OVH</strong> : hébergement du site pensif-app.fr, et service de messagerie utilisé pour envoyer
+                les codes de connexion par e-mail (votre adresse e-mail et le code transitent par ce service).
               </li>
             </UL>
 
@@ -306,9 +349,14 @@ export default function ConfidentialitePage() {
                 <strong>Fichier audio local</strong> : temporaire, supprimé après traitement (section 5).
               </li>
               <li>
+                <strong>Vos choix d’autorisation (Services d’IA)</strong> : conservés sur votre appareil, par compte,
+                jusqu’à leur retrait, la suppression de vos données ou la désinstallation de l’application.
+              </li>
+              <li>
                 <strong>Journaux techniques et de prévention des abus chez les prestataires</strong> : selon leurs
-                propres règles — jusqu’à 30 jours chez Groq et OpenAI d’après leur documentation officielle ; chez
-                Supabase, le temps nécessaire au fonctionnement et à la sécurité du service.
+                propres règles — jusqu’à 30 jours chez Groq et OpenAI d’après leur documentation officielle, sauf
+                obligation légale de conservation plus longue ; chez Supabase, la durée dépend de l’offre utilisée et
+                Supabase indique stocker ces journaux dans des centres de données situés dans l’Union européenne.
               </li>
             </UL>
 
@@ -335,7 +383,8 @@ export default function ConfidentialitePage() {
             <P>
               Désinstaller l’application ne supprime pas les données sauvegardées sur nos serveurs. Vous pouvez aussi
               demander la suppression par e-mail à l’adresse de contact. Les prestataires peuvent conserver certaines
-              données pour la durée indiquée à la section 10.
+              données pour la durée indiquée à la section 10. Se déconnecter (Réglages) ne supprime rien sur nos
+              serveurs : vous retrouvez vos données avec « J’ai déjà un compte ».
             </P>
 
             <H2 id="securite">12. Sécurité</H2>
@@ -355,25 +404,62 @@ export default function ConfidentialitePage() {
               sécurité absolue.
             </P>
 
-            <H2 id="transferts">13. Transferts de données hors de l’Union européenne</H2>
+            <H2 id="transferts">13. Sous-traitance et transferts hors de l’Union européenne</H2>
+            <H3>Contrats de sous-traitance</H3>
             <P>
-              Certains prestataires peuvent traiter des données hors de l’Union européenne :
+              Supabase, Groq et OpenAI traitent des données pour le compte de Pensif : ce sont des sous-traitants. Chacun
+              publie un addendum de traitement des données. Voici ce que prévoient, sur ce point, les documents publics de
+              Groq et de Supabase, consultés le 13 octobre 2026 :
             </P>
             <UL>
               <li>
-                <strong>Groq</strong> indique conserver ses données aux États-Unis et encadrer les transferts par des
-                clauses contractuelles types ou par le Data Privacy Framework.
+                <strong>Groq</strong> (addendum pour GroqCloud, en vigueur le 15 octobre 2025) : Groq traite les données
+                pour fournir le service, sur instruction du client, et ne les vend ni ne les partage ; le client autorise
+                de façon générale le recours à des sous-traitants ultérieurs, dont la liste est publiée, et Groq reste
+                responsable de leur exécution.
               </li>
               <li>
-                <strong>OpenAI</strong> indique, dans son addendum de traitement des données, encadrer les transferts
-                hors Espace économique européen par des clauses contractuelles types ou une décision d’adéquation.
+                <strong>Supabase</strong> (addendum, version du 1er août 2026) : Supabase agit comme sous-traitant ; le
+                client autorise de façon générale le recours aux sous-traitants ultérieurs de sa liste publique, avec des
+                contrats écrits, un préavis en cas de changement et un droit d’objection.
               </li>
               <li>
-                <strong>Supabase</strong> stocke les données du projet en Irlande ; elle indique recourir à des
-                sous-traitants pouvant se trouver notamment aux États-Unis et à Singapour, avec des clauses
-                contractuelles types.
+                <strong>OpenAI</strong> publie, de la même manière, un addendum de traitement des données et une liste de
+                sous-traitants ultérieurs.
               </li>
             </UL>
+            <P>
+              Ces documents émanent des prestataires, pas de Pensif : en cas de modification, c’est leur version en
+              vigueur qui s’applique.
+            </P>
+            <H3>Transferts hors de l’Union européenne</H3>
+            <P>
+              Certains prestataires peuvent traiter des données hors de l’Union européenne. Voici les mécanismes de
+              transfert que leurs documents publics annoncent :
+            </P>
+            <UL>
+              <li>
+                <strong>Groq</strong> indique conserver ses données aux États-Unis. Son addendum prévoit les clauses
+                contractuelles types de la Commission européenne, réputées signées, dans la mesure où la loi l’exige, par
+                l’acceptation du contrat, et indique que Groq s’assure qu’un mécanisme de transfert licite existe. Ces
+                documents ne mentionnent pas le Data Privacy Framework.
+              </li>
+              <li>
+                <strong>OpenAI</strong> publie son propre addendum de traitement des données, qui précise les mécanismes
+                de transfert qu’elle applique. Pensif n’en reproduit pas ici les clauses.
+              </li>
+              <li>
+                <strong>Supabase</strong> stocke la base de données, l’authentification et les sauvegardes du projet dans
+                la région choisie (ici l’Irlande). Elle indique ne traiter hors de cette région que quatre catégories
+                limitées (informations de compte, demandes de support, données d’usage et journaux, diffusion de
+                contenu), et transférer des données vers Singapour et les États-Unis dans le cadre de clauses
+                contractuelles types, que son addendum rend applicables à l’acceptation du contrat.
+              </li>
+            </UL>
+            <P>
+              Ces mécanismes sont ceux annoncés par les prestataires. Pensif ne détient pas de certification propre sur
+              ces transferts et n’en promet aucune.
+            </P>
 
             <H2 id="droits">14. Vos droits</H2>
             <P>
@@ -382,6 +468,28 @@ export default function ConfidentialitePage() {
               consentement, le retirer. Vous pouvez aussi définir des directives sur le sort de vos données après votre
               décès.
             </P>
+            <P>
+              <strong>Retirer votre autorisation pour la Capture vocale ou les Réponses intelligentes.</strong> Vous le
+              faites à tout moment dans Réglages, rubrique « Services d’IA ». Ce retrait a trois effets distincts :
+            </P>
+            <UL>
+              <li>
+                <strong>Envois futurs</strong> : ils sont arrêtés dès le retrait. Pensif ne transmet plus de données à ces
+                prestataires pour cette fonction et vous redemandera votre autorisation si vous la réutilisez. Un envoi
+                déjà parti au moment du retrait peut aller à son terme.
+              </li>
+              <li>
+                <strong>Traitements passés</strong> : le retrait n’a pas d’effet rétroactif et ne remet pas en cause les
+                traitements réalisés avant lui. Pensif ne peut pas rappeler ce qui a déjà été transmis ; ce que les
+                prestataires ont reçu reste soumis à leurs règles de conservation (section 10).
+              </li>
+              <li>
+                <strong>Effacement</strong> : retirer une autorisation ne supprime pas vos données. Pour les effacer,
+                supprimez vos pensées ou vos proches, ou l’ensemble de vos données (section 11), ou écrivez-nous. Pour les
+                traces que des prestataires pourraient conserver, notre réponse portera sur ce que leurs conditions
+                permettent : nous ne pouvons pas promettre un effacement immédiat chez eux.
+              </li>
+            </UL>
             <P>
               Une grande partie de ces droits s’exerce directement dans l’application (modifier ou supprimer une pensée,
               un proche, ou l’ensemble de vos données). Pour le reste, écrivez à{" "}
@@ -395,10 +503,17 @@ export default function ConfidentialitePage() {
             <H2 id="tiers">15. Données concernant d’autres personnes</H2>
             <P>
               Pensif vous permet d’enregistrer des informations sur vos proches (prénom, date de naissance, goûts,
-              pensées). Vous les enregistrez pour un usage personnel. Nous vous demandons de ne saisir que ce qui est
-              utile et de ne pas enregistrer d’informations sensibles sur autrui. Pensif ne contacte jamais vos proches
-              et ne leur envoie aucun message à votre place. Si une personne pense que des informations la concernant
-              sont enregistrées dans Pensif, elle peut nous écrire à l’adresse de contact.
+              pensées). YOMIC, en tant que responsable du traitement (section 1), est responsable de la protection de ces
+              données comme de celles qui vous concernent : sécurité, accès limité, durées de conservation, choix des
+              prestataires. Vous restez libre de ce que vous saisissez ; nous vous invitons simplement à ne saisir que ce
+              qui est utile et à éviter les informations sensibles sur autrui.
+            </P>
+            <P>
+              Des informations sur vos proches ne sont transmises à un service d’intelligence artificielle que dans les cas
+              décrits aux sections 5 et 6, après votre autorisation et pour la fonction demandée. Pensif ne contacte jamais
+              vos proches et ne leur envoie aucun message à votre place. Si une personne pense que des informations la
+              concernant sont enregistrées dans Pensif, elle peut nous écrire à l’adresse de contact pour exercer ses
+              droits (accès, rectification, effacement).
             </P>
 
             <H2 id="site">16. Le site pensif-app.fr</H2>
@@ -422,7 +537,8 @@ export default function ConfidentialitePage() {
             <P>
               Nous mettrons cette page à jour quand Pensif ou ses prestataires changent. La date de dernière mise à jour
               figure en haut de la page. En cas de changement important, nous vous en informerons dans l’application ou
-              sur le site.
+              sur le site. Si le contenu d’un traitement par intelligence artificielle change (données envoyées ou
+              destinataires), l’application vous redemandera votre autorisation avant tout nouvel envoi.
             </P>
 
             <H2 id="contact">18. Contact</H2>
