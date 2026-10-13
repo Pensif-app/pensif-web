@@ -139,6 +139,36 @@ export default function ConfidentialitePage() {
                 appareil.
               </li>
             </UL>
+            <H3>Données échangées avec Expo pour les mises à jour</H3>
+            <P>
+              Pensif peut recevoir des corrections sans passer par l’App Store. À chaque lancement, l’application demande
+              à Expo, le service de mises à jour qu’elle utilise, si une nouvelle version du code est disponible. Cette
+              requête contient :
+            </P>
+            <UL>
+              <li>
+                un identifiant aléatoire propre à l’installation de l’application sur votre appareil, créé par
+                l’application et conservé sur l’appareil ; d’après la documentation d’Expo, il ne dérive ni de votre
+                compte ni de votre matériel ;
+              </li>
+              <li>
+                la plateforme (iOS), la version d’exécution de l’application, l’identifiant du projet Pensif et les
+                identifiants de la version du code installée ;
+              </li>
+              <li>
+                après une erreur fatale de l’application, un court descriptif technique de cette erreur (heure, nature et
+                description, 1&nbsp;024 caractères au plus), joint à la vérification suivante ;
+              </li>
+              <li>
+                comme pour toute connexion Internet, l’adresse IP de votre appareil est visible par le serveur d’Expo.
+              </li>
+            </UL>
+            <P>
+              Pensif n’ajoute à cette requête ni votre identifiant de compte, ni votre adresse e-mail, ni vos pensées, vos
+              proches ou vos enregistrements audio. Le descriptif d’une erreur fatale est généré automatiquement ; il
+              n’est pas conçu pour contenir vos contenus. Cette vérification est automatique : l’application ne propose
+              pas de réglage pour la désactiver, et elle ne dépend pas des autorisations « Services d’IA ».
+            </P>
             <H3>Ce que Pensif ne collecte pas</H3>
             <P>
               Pensif n’utilise ni outil de mesure d’audience, ni publicité, ni suivi entre applications, et ne demande
@@ -167,6 +197,10 @@ export default function ConfidentialitePage() {
                 vous les avez autorisées dans l’application : votre consentement est la base de ce traitement. Vous
                 pouvez le retirer à tout moment (section 14). L’accès au micro est une autre autorisation, distincte,
                 qui se règle dans les réglages de votre appareil.
+              </li>
+              <li>
+                <strong>Mises à jour de l’application</strong> : vérifier et télécharger les corrections de l’application
+                auprès d’Expo (sections 2 et 9), afin de fournir et de maintenir le service.
               </li>
               <li>
                 <strong>Sécurité et prévention des abus</strong> (limites d’utilisation) : intérêt légitime de Pensif à
@@ -325,6 +359,12 @@ export default function ConfidentialitePage() {
                 uniquement si vous les avez autorisées.
               </li>
               <li>
+                <strong>Expo</strong> : service de distribution des mises à jour de l’application. À chaque lancement, la
+                vérification des mises à jour lui transmet les données décrites à la section 2 (identifiant aléatoire
+                d’installation, plateforme, version, projet et, éventuellement, le descriptif d’une erreur fatale). Cette
+                vérification est indépendante de vos contenus et de vos autorisations « Services d’IA ».
+              </li>
+              <li>
                 <strong>Apple</strong> : distribution de l’application (App Store, TestFlight) et fonctions du système
                 (micro, notifications, sélecteur de contacts), soumises aux règles d’Apple.
               </li>
@@ -351,6 +391,11 @@ export default function ConfidentialitePage() {
               <li>
                 <strong>Vos choix d’autorisation (Services d’IA)</strong> : conservés sur votre appareil, par compte,
                 jusqu’à leur retrait, la suppression de vos données ou la désinstallation de l’application.
+              </li>
+              <li>
+                <strong>Données de vérification des mises à jour (Expo)</strong> : conservées selon les règles d’Expo. Sa
+                politique de confidentialité (mise à jour le 21 octobre 2025) n’indique pas de durée précise : elle prévoit
+                seulement de conserver les données le temps raisonnablement nécessaire à ses finalités.
               </li>
               <li>
                 <strong>Journaux techniques et de prévention des abus chez les prestataires</strong> : selon leurs
@@ -430,7 +475,8 @@ export default function ConfidentialitePage() {
             </UL>
             <P>
               Ces documents émanent des prestataires, pas de Pensif : en cas de modification, c’est leur version en
-              vigueur qui s’applique.
+              vigueur qui s’applique. Pour Expo (mises à jour de l’application), Pensif s’appuie sur la politique de
+              confidentialité publiée par Expo.
             </P>
             <H3>Transferts hors de l’Union européenne</H3>
             <P>
@@ -454,6 +500,12 @@ export default function ConfidentialitePage() {
                 limitées (informations de compte, demandes de support, données d’usage et journaux, diffusion de
                 contenu), et transférer des données vers Singapour et les États-Unis dans le cadre de clauses
                 contractuelles types, que son addendum rend applicables à l’acceptation du contrat.
+              </li>
+              <li>
+                <strong>Expo</strong> indique, dans sa politique de confidentialité, pouvoir transférer et stocker des
+                données sur des serveurs situés hors de votre pays de résidence, sans nommer d’emplacement précis. Elle
+                indique adhérer au Data Privacy Framework UE–États-Unis (avec les extensions pour le Royaume-Uni et la
+                Suisse) et recourir à des clauses contractuelles types dans la mesure requise par la loi.
               </li>
             </UL>
             <P>
