@@ -61,7 +61,7 @@ export default function ConfidentialitePage() {
               quels prestataires, pendant combien de temps, et comment les supprimer.
             </p>
             <p className="mt-4 text-sm text-white/45">
-              Dernière mise à jour : [DATE DE PUBLICATION À RENSEIGNER]
+              Dernière mise à jour : 14 octobre 2026
             </p>
           </div>
         </section>
@@ -121,6 +121,13 @@ export default function ConfidentialitePage() {
               <li>
                 <strong>Les réponses du petit quiz</strong> d’un proche : centres d’intérêt, éléments à éviter, souhait
                 (texte libre) et réponses d’affinage.
+              </li>
+              <li>
+                <strong>Vos actions dans le module Cadeaux</strong> : quand vous touchez « J’aime » ou « Pas convaincu »,
+                Pensif enregistre l’idée concernée, son thème, le motif de refus que vous choisissez dans une liste, la
+                date et l’heure de l’action et, pour un « J’aime », la liste des idées affichées à ce moment-là. Ces
+                informations sont associées au profil du proche pour adapter les recommandations suivantes ; elles ne
+                sont pas envoyées aux services d’IA décrits aux sections 5 et 6.
               </li>
               <li>
                 <strong>Des compteurs d’utilisation</strong> (identifiant utilisateur et date, sans aucun contenu) pour
