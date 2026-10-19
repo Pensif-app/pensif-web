@@ -61,7 +61,7 @@ export default function ConfidentialitePage() {
               quels prestataires, pendant combien de temps, et comment les supprimer.
             </p>
             <p className="mt-4 text-sm text-white/45">
-              Dernière mise à jour : 14 octobre 2026
+              Dernière mise à jour : 19 octobre 2026
             </p>
           </div>
         </section>
@@ -124,7 +124,8 @@ export default function ConfidentialitePage() {
               </li>
               <li>
                 <strong>Vos actions dans le module Cadeaux</strong> : quand vous touchez « J’aime » ou « Pas convaincu »,
-                Pensif enregistre l’idée concernée, son thème, le motif de refus que vous choisissez dans une liste, la
+                Pensif enregistre l’idée concernée, son thème, le motif de refus que vous choisissez (« Trop cher » ou
+                « Je n’aime pas »), la
                 date et l’heure de l’action et, pour un « J’aime », la liste des idées affichées à ce moment-là. Ces
                 informations sont associées au profil du proche pour adapter les recommandations suivantes ; elles ne
                 sont pas envoyées aux services d’IA décrits aux sections 5 et 6.
@@ -204,6 +205,11 @@ export default function ConfidentialitePage() {
                 vous les avez autorisées dans l’application : votre consentement est la base de ce traitement. Vous
                 pouvez le retirer à tout moment (section 14). L’accès au micro est une autre autorisation, distincte,
                 qui se règle dans les réglages de votre appareil.
+              </li>
+              <li>
+                <strong>Liens d’affiliation Amazon</strong> : les idées cadeaux proposent un bouton qui ouvre une page
+                Amazon.fr. Ce lien est un lien d’affiliation (section 9) : le traitement correspond à l’intérêt légitime
+                de Pensif de financer le service sans vous faire payer plus cher.
               </li>
               <li>
                 <strong>Mises à jour de l’application</strong> : vérifier et télécharger les corrections de l’application
@@ -372,6 +378,10 @@ export default function ConfidentialitePage() {
                 vérification est indépendante de vos contenus et de vos autorisations « Services d’IA ».
               </li>
               <li>
+                <strong>Amazon</strong> : destinataire des liens d’affiliation du module Cadeaux, voir ci-dessous. Amazon
+                n’est pas un sous-traitant de Pensif.
+              </li>
+              <li>
                 <strong>Apple</strong> : distribution de l’application (App Store, TestFlight) et fonctions du système
                 (micro, notifications, sélecteur de contacts), soumises aux règles d’Apple.
               </li>
@@ -380,7 +390,38 @@ export default function ConfidentialitePage() {
                 les codes de connexion par e-mail (votre adresse e-mail et le code transitent par ce service).
               </li>
             </UL>
-
+            <H3>Liens d’affiliation Amazon</H3>
+            <P>
+              Dans le module Cadeaux, chaque idée peut proposer un bouton « Voir sur Amazon ». Pensif participe au
+              Programme Partenaires d’Amazon : ce lien contient l’identifiant de partenaire de Pensif, et Pensif peut
+              percevoir une commission sur les achats réalisés après un clic, sans surcoût pour vous.
+            </P>
+            <UL>
+              <li>
+                <strong>Quand le lien est ouvert</strong> : uniquement quand vous touchez le bouton. Il s’ouvre dans votre
+                navigateur ou dans l’application Amazon, jamais dans une fenêtre intégrée à Pensif.
+              </li>
+              <li>
+                <strong>Ce que contient le lien</strong> : l’identifiant du produit sur Amazon.fr et l’identifiant de
+                partenaire de Pensif. Il ne contient ni votre identifiant Pensif, ni votre adresse e-mail, ni le prénom
+                ou les goûts de votre proche.
+              </li>
+              <li>
+                <strong>Ce qu’Amazon reçoit</strong> : dès que la page s’ouvre, Amazon traite votre visite (par exemple
+                votre adresse IP et des informations sur votre appareil, éventuellement via des cookies) selon sa propre
+                politique de confidentialité, en tant que responsable de traitement. Pensif ne contrôle pas ce traitement.
+              </li>
+              <li>
+                <strong>Ce que Pensif reçoit</strong> : des rapports de ventes et de commissions fournis par le Programme
+                Partenaires. Pensif n’a accès ni à votre compte Amazon, ni à vos moyens de paiement, ni à votre commande
+                en tant que telle.
+              </li>
+            </UL>
+            <P>
+              Pensif ne suit pas ce que vous faites après le clic. Les idées cadeaux sont déterminées par les réponses au
+              quiz du proche et par votre budget, sur votre appareil ; la présence d’un lien d’affiliation ne les envoie
+              à aucun service d’IA.
+            </P>
             <H2 id="conservation">10. Durée de conservation</H2>
             <UL>
               <li>
@@ -507,6 +548,11 @@ export default function ConfidentialitePage() {
                 limitées (informations de compte, demandes de support, données d’usage et journaux, diffusion de
                 contenu), et transférer des données vers Singapour et les États-Unis dans le cadre de clauses
                 contractuelles types, que son addendum rend applicables à l’acceptation du contrat.
+              </li>
+              <li>
+                <strong>Amazon</strong> traite votre visite après le clic sur un lien d’affiliation selon sa propre
+                politique de confidentialité, en tant que responsable de traitement : ses emplacements de traitement et ses
+                mécanismes de transfert relèvent de ses documents, pas de Pensif.
               </li>
               <li>
                 <strong>Expo</strong> indique, dans sa politique de confidentialité, pouvoir transférer et stocker des
