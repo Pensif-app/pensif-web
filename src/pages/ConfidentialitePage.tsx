@@ -413,7 +413,7 @@ export default function ConfidentialitePage() {
               </li>
               <li>
                 <strong>Ce que Pensif reçoit</strong> : des rapports de ventes et de commissions fournis par le Programme
-                Partenaires. Pensif n’a accès ni à votre compte Amazon, ni à vos moyens de paiement, ni à votre commande
+                Partenaires, regroupés par produit, qui n’identifient pas les acheteurs. Pensif n’a accès ni à votre compte Amazon, ni à vos moyens de paiement, ni à votre commande
                 en tant que telle.
               </li>
             </UL>
