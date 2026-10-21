@@ -35,7 +35,7 @@ export default function PartnerContactForm() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const subject = `Demande de partenariat — ${form.company || "Sans nom"}`;
+    const subject = `Demande de partenariat : ${form.company || "Sans nom"}`;
     const body = [
       `Entreprise : ${form.company}`,
       `Contact : ${form.contact}`,

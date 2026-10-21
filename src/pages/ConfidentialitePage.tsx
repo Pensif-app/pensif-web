@@ -61,7 +61,7 @@ export default function ConfidentialitePage() {
               quels prestataires, pendant combien de temps, et comment les supprimer.
             </p>
             <p className="mt-4 text-sm text-white/45">
-              Dernière mise à jour : 19 octobre 2026
+              Dernière mise à jour : 21 octobre 2026
             </p>
           </div>
         </section>
@@ -447,7 +447,7 @@ export default function ConfidentialitePage() {
               </li>
               <li>
                 <strong>Journaux techniques et de prévention des abus chez les prestataires</strong> : selon leurs
-                propres règles — jusqu’à 30 jours chez Groq et OpenAI d’après leur documentation officielle, sauf
+                propres règles : jusqu’à 30 jours chez Groq et OpenAI d’après leur documentation officielle, sauf
                 obligation légale de conservation plus longue ; chez Supabase, la durée dépend de l’offre utilisée et
                 Supabase indique stocker ces journaux dans des centres de données situés dans l’Union européenne.
               </li>
@@ -557,7 +557,7 @@ export default function ConfidentialitePage() {
               <li>
                 <strong>Expo</strong> indique, dans sa politique de confidentialité, pouvoir transférer et stocker des
                 données sur des serveurs situés hors de votre pays de résidence, sans nommer d’emplacement précis. Elle
-                indique adhérer au Data Privacy Framework UE–États-Unis (avec les extensions pour le Royaume-Uni et la
+                indique adhérer au Data Privacy Framework entre l’UE et les États-Unis (avec les extensions pour le Royaume-Uni et la
                 Suisse) et recourir à des clauses contractuelles types dans la mesure requise par la loi.
               </li>
             </UL>

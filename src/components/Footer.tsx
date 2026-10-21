@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 flex flex-col-reverse items-center justify-between gap-4 border-t border-white/10 pt-5 sm:flex-row">
-          <p className="text-xs text-white/40">© 2026 Yomic — Pensif. Tous droits réservés.</p>
+          <p className="text-xs text-white/40">© 2026 Yomic (Pensif). Tous droits réservés.</p>
 
           {activeSocials.length > 0 && (
             <div className="flex gap-4">
