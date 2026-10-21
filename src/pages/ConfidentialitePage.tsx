@@ -128,7 +128,10 @@ export default function ConfidentialitePage() {
                 « Je n’aime pas »), la
                 date et l’heure de l’action et, pour un « J’aime », la liste des idées affichées à ce moment-là. Ces
                 informations sont associées au profil du proche pour adapter les recommandations suivantes ; elles ne
-                sont pas envoyées aux services d’IA décrits aux sections 5 et 6.
+                sont pas envoyées aux services d’IA décrits aux sections 5 et 6. Les idées que vous aimez sont
+                regroupées dans « Mes idées » pour ce proche, et l’idée que vous marquez comme « à offrir » est mémorisée
+                avec l’année concernée : ces informations restent dans le profil du proche et ne sont pas non plus
+                envoyées aux services d’IA.
               </li>
               <li>
                 <strong>Des compteurs d’utilisation</strong> (identifiant utilisateur et date, sans aucun contenu) pour
